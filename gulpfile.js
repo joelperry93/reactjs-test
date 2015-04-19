@@ -12,6 +12,7 @@ gulp.task("watch", function () {
 
 gulp.task('transpile-js', function () {
   return gulp.src('./src/*.jsx')
+    .transform(babelify)
     .pipe(react({harmony: true}))
     .pipe(gulp.dest('./public/js'))
 })
@@ -22,7 +23,7 @@ gulp.task('templates', function() {
     .pipe(gulp.dest('./public'))
 });
 
-/*
+
 gulp.task('compile', function () {
     browserify({
         entries : './js/main.js',
@@ -32,4 +33,4 @@ gulp.task('compile', function () {
     .bundle()
     .pipe(source('output.js'))
     .pipe(gulp.dest('./js/dist'))
-});*/
+});
