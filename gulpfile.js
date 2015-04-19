@@ -6,8 +6,21 @@ var react      = require('gulp-react')
 var jade       = require('gulp-jade');
 
 gulp.task("watch", function () {
-    gulp.watch('./src/**/*.jsx', ['transpile-js'])
+    gulp.watch('./src/**/*.jsx', ['transpile-js']);
+    gulp.watch('./templates/*.jade', ['templates']);
 });  
+
+gulp.task('transpile-js', function () {
+  return gulp.src('./src/*.jsx')
+    .pipe(react({harmony: true}))
+    .pipe(gulp.dest('./public/js'))
+})
+
+gulp.task('templates', function() {
+  gulp.src('./templates/*.jade')
+    .pipe(jade({ locals : {} }))
+    .pipe(gulp.dest('./public'))
+});
 
 /*
 gulp.task('compile', function () {
@@ -20,24 +33,3 @@ gulp.task('compile', function () {
     .pipe(source('output.js'))
     .pipe(gulp.dest('./js/dist'))
 });*/
-
-
-
-gulp.task('transpile-js', function () {
-  return gulp.src('./src/**/*.jsx')
-    .pipe(react({harmony: true}))
-    .pipe(gulp.dest('./public/js'))
-})
-
-
-
-
-gulp.task('templates', function() {
-  var YOUR_LOCALS = { name : "Joel" };
-
-  gulp.src('./templates/*.jade')
-    .pipe(jade({
-      locals: YOUR_LOCALS
-    }))
-    .pipe(gulp.dest('./public'))
-});
