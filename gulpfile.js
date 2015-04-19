@@ -12,7 +12,6 @@ gulp.task("watch", function () {
 
 gulp.task('transpile-js', function () {
   return gulp.src('./src/*.jsx')
-    .transform(babelify)
     .pipe(react({harmony: true}))
     .pipe(gulp.dest('./public/js'))
 })
