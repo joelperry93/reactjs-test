@@ -16,4 +16,4 @@ class CommentBox extends React.Component {
     }
 }
 
-React.render(<CommentBox />, document.getElementById('content'));
+React.render(<CommentBox />, document.body);
